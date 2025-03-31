@@ -1,11 +1,11 @@
-my_array = [ 11, 9, 12, 7, 3]
+my_array = my_array = [7, 12, 9, 4, 11]
 firstIndex = 0
 lastIndex = len(my_array)-1
 
-def quickSort(array, lastIndex, firstIndex):
+def quickSort(array, firstIndex, lastIndex):
     pivotIndex = lastIndex
     j = firstIndex - 1
-    temp = None
+
     for i in range(firstIndex, lastIndex + 1):
         if array[i] < array[pivotIndex]:
             j = j + 1
@@ -13,13 +13,15 @@ def quickSort(array, lastIndex, firstIndex):
 
     array[j+1], array[pivotIndex] = array[pivotIndex], array[j+1]
 
-    if ((j+1)-firstIndex) > 1:
-        quickSort(array, lastIndex, firstIndex)
-        lastIndex = j+1
-    elif (lastIndex-(j+1)) > 1:
-        quickSort(array, lastIndex, firstIndex)
-        firstIndex = j+2
-    
     print(array)
+
+    if ((j+1)-firstIndex) > 1:
+        lastIndex = j
+        quickSort(array, firstIndex, lastIndex)
+    elif (lastIndex-(j+1)) > 1:
+        firstIndex = j+2
+        quickSort(array, firstIndex, lastIndex)
+        
+    
 
 quickSort(my_array, firstIndex, lastIndex)
